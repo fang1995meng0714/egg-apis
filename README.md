@@ -16,6 +16,10 @@ $ npm run dev
 $ open http://localhost:7001/
 ```
 
+```mysql
+egg_db -> users
+
+
 ### Deploy
 
 ```bash

@@ -16,5 +16,21 @@ class UsersService extends Service{
 	      id: ctx.uuid()
 	    })
     }
+
+    async login(params) {
+        const {ctx, app, service} = this;
+		// 将密码进行密文处理
+	    const md5Password = service.common.getMd5Data(params.password);
+        let userInfo = await service.common.getUser(params);
+        if(userInfo.length > 0) {
+            console.log(66666)
+            userInfo = JSON.parse(JSON.stringify(userInfo))[0];
+        }
+        if(userInfo.password === md5Password) {
+            return true
+        }
+
+        return false;
+    }
 }
 module.exports = UsersService;
